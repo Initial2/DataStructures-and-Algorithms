@@ -19,12 +19,13 @@ public class CircleArrayQueueArray {
             System.out.println("a:添加数据队列");
             System.out.println("g:从队列取出数据");
             System.out.println("h:查看队列头的数据");
-            key = scanner.next().charAt(0);//接收一个字符
+            //接收一个字符
+            key = scanner.next().charAt(0);
             switch (key) {
                 case 's':
                     queue.showQueue();
                     break;
-                
+        
                 case 'a':
                     System.out.println("输入一个数");
                     int value = scanner.nextInt();
