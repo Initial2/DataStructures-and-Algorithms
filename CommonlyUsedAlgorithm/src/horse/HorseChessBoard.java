@@ -79,6 +79,9 @@ public class HorseChessBoard {
         //2. 获取当前马儿所在的位置,还能走哪些点
         ArrayList<Point> reachablePoint = getReachablePoint(new Point(row, col));
         
+        //然后使用贪心算法,对这些点进行排序. 每次都走尽可能产生最小回溯的那一个点
+        sortPoints(reachablePoint);
+        
         //3. 遍历这些点
         while (!reachablePoint.isEmpty()) {
             //4. 每次取出第一个点,开始判断
@@ -117,8 +120,6 @@ public class HorseChessBoard {
      */
     private ArrayList<Point> getReachablePoint(Point curPoint) {
         ArrayList<Point> points = new ArrayList<>();
-        
-        //1,2
         
         //看看能不能向上走两格
         if (curPoint.x - 2 >= 0) {
@@ -166,6 +167,24 @@ public class HorseChessBoard {
         
         return points;
         
+    }
+    
+    
+    /**
+     * 使用贪心算法,进行优化.  尽可能减少回溯
+     * 原理:
+     * 每次再获取到马儿的所有下一步可走的点时, 再进行一次排序.
+     * 把马儿的所有下一步可走的点, 再分别往下走一步.
+     * 然后分别计算出 所有下一步可走的点再分别往下走一步, 可以走的顶点个数.
+     * 然后按照非递增的顺序排序.
+     */
+    private void sortPoints(ArrayList<Point> points) {
+        points.sort((o1, o2) -> {
+            int num1 = getReachablePoint(o1).size();
+            int num2 = getReachablePoint(o2).size();
+            return Integer.compare(num1, num2);
+            
+        });
     }
     
     

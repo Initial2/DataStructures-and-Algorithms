@@ -11,9 +11,9 @@ public class HorseTest {
     @Test
     public void test() {
         
-        HorseChessBoard horseChessBoard = new HorseChessBoard(6, 6);
-        
-        horseChessBoard.start(3, 4);
+        HorseChessBoard horseChessBoard = new HorseChessBoard(8, 8);
+    
+        horseChessBoard.start(0, 0);
         
         
     }
