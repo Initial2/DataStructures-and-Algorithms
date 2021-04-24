@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ArrayQueue/ArrayQueue.iml" filepath="$PROJECT_DIR$/ArrayQueue/ArrayQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/BinaryTree/BinaryTree.iml" filepath="$PROJECT_DIR$/BinaryTree/BinaryTree.iml" />
       <module fileurl="file://$PROJECT_DIR$/CommonlyUsedAlgorithm/CommonlyUsedAlgorithm.iml" filepath="$PROJECT_DIR$/CommonlyUsedAlgorithm/CommonlyUsedAlgorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/DataStructureAndAlgorithm.iml" filepath="$PROJECT_DIR$/DataStructureAndAlgorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/DoubleLinkedList/DoubleLinkedList.iml" filepath="$PROJECT_DIR$/DoubleLinkedList/DoubleLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Graph/Graph.iml" filepath="$PROJECT_DIR$/Graph/Graph.iml" />
       <module fileurl="file://$PROJECT_DIR$/HashTable/HashTable.iml" filepath="$PROJECT_DIR$/HashTable/HashTable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Queue/Queue.iml" filepath="$PROJECT_DIR$/Queue/Queue.iml" />
       <module fileurl="file://$PROJECT_DIR$/Recursion/Recursion.iml" filepath="$PROJECT_DIR$/Recursion/Recursion.iml" />
       <module fileurl="file://$PROJECT_DIR$/SearchAlgorithm/SearchAlgorithm.iml" filepath="$PROJECT_DIR$/SearchAlgorithm/SearchAlgorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/SingleCircleLinkedList/SingleCircleLinkedList.iml" filepath="$PROJECT_DIR$/SingleCircleLinkedList/SingleCircleLinkedList.iml" />
