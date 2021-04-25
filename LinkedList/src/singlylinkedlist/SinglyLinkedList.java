@@ -11,15 +11,17 @@ package singlylinkedlist;
 public class SinglyLinkedList<T> {
     
     private final Node<T> head;
-    private int numOfNodes = 0;
+    private int numOfNodes;
     
     public SinglyLinkedList() {
         head = new Node<>(null);
+        numOfNodes = 0;
     }
     
     public Node<T> getHead() {
         return head;
     }
+    
     
     /**
      * 链表中添加数据
@@ -95,6 +97,7 @@ public class SinglyLinkedList<T> {
         }
         T data = temp.next.data;
         temp.next = temp.next.next;
+        numOfNodes--;
         return data;
         
     }
