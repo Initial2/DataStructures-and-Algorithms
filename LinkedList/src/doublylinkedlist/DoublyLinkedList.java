@@ -1,27 +1,16 @@
-package singlylinkedlist;
+package doublylinkedlist;
+
 
 /**
- * 单向链表的实现
- * 此链表带头指针,头指针的next指向链表的第一个元素
- * head.next = 链表第一个元素.
+ * 双向链表
  *
  * @author initial
- * @create 2021-04-25 17:58
+ * @create 2021-04-27 12:42
  */
-public class SinglyLinkedList<T> {
+public class DoublyLinkedList<T> {
     
-    private final Node<T> head;
+    private Node<T> head = new Node<>(null);
     private int numOfNodes;
-    
-    public SinglyLinkedList() {
-        head = new Node<>(null);
-        numOfNodes = 0;
-    }
-    
-    public Node<T> getHead() {
-        return head;
-    }
-    
     
     /**
      * 链表中添加数据
@@ -32,16 +21,18 @@ public class SinglyLinkedList<T> {
     public void add(T data) {
         if (isEmpty()) {
             head.data = data;
+            head.pre = null;
             numOfNodes++;
             return;
         }
-    
+        
         Node<T> tNode = new Node<>(data);
         Node<T> temp = head;
         while (temp.next != null) {
             temp = temp.next;
         }
         temp.next = tNode;
+        tNode.pre = temp;
         numOfNodes++;
     }
     
@@ -56,17 +47,21 @@ public class SinglyLinkedList<T> {
         if (index < 0 && index > numOfNodes) {
             throw new IndexOutOfBoundsException();
         }
-        
         Node<T> temp = head;
         while (index > 1) {
             temp = temp.next;
             index--;
         }
-    
+        //要插入元素的下一个元素位置
         Node<T> newNodeNext = temp.next;
+        
         Node<T> newNode = new Node<>(data);
         temp.next = newNode;
+        newNode.pre = temp;
+        
+        newNodeNext.pre = newNode;
         newNode.next = newNodeNext;
+        
         numOfNodes++;
         
     }
@@ -78,7 +73,7 @@ public class SinglyLinkedList<T> {
         if (head.next == null) {
             return;
         }
-    
+        
         Node<T> temp = head;
         while (temp != null) {
             System.out.println(temp.data);
@@ -88,73 +83,77 @@ public class SinglyLinkedList<T> {
     }
     
     
+    private boolean isEmpty() {
+        return numOfNodes == 0;
+    }
+    
+    
     /**
      * 删除元素
      *
      * @param index 指定索引位置
      * @return 返回删除的元素
      */
-    public T delete(int index) {
+    public T remove(int index) {
         if (index < 0 && index > numOfNodes) {
             throw new IndexOutOfBoundsException();
         }
         
         Node<T> temp = head;
-        while (index > 1) {
+        if (index == 0) {
+            T data = temp.data;
+            head = head.next;
+            head.pre = null;
+            numOfNodes--;
+            return data;
+        }
+        
+        while (index > 0) {
             temp = temp.next;
             index--;
         }
-        T data = temp.next.data;
-        temp.next = temp.next.next;
+        
+        temp.pre.next = temp.next;
+        temp.next.pre = temp.pre;
+        T data = temp.data;
         numOfNodes--;
         return data;
         
     }
     
     
-    /**
-     * 清空当前链表所有元素
-     */
-    public void clear() {
-        head.next = null;
-        numOfNodes = 0;
-    }
-    
-    
-    /**
-     * 返回当前链表的元素个数
-     *
-     * @return 当前链表的元素个数
-     */
-    public int size() {
-        return numOfNodes;
-    }
-    
-    /**
-     * 判断当前链表是否为空
-     *
-     * @return 为空返回true. 否则返回-1.
-     */
-    public boolean isEmpty() {
-        return numOfNodes == 0;
-    }
-    
-    
     static class Node<T> {
-        private T data;
+        private Node<T> pre;
         private Node<T> next;
+        private T data;
         
         public Node(T data) {
             this.data = data;
         }
         
         
+        public Node<T> getPre() {
+            return pre;
+        }
+        
+        public void setPre(Node<T> pre) {
+            this.pre = pre;
+        }
+        
         public Node<T> getNext() {
             return next;
         }
         
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
+        
         public T getData() {
             return data;
+        }
+        
+        public void setData(T data) {
+            this.data = data;
         }
     }
     

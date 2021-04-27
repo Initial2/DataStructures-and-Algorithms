@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 public class SinglyLinkedListTest {
     @Test
     public void test() {
+    
         SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.add(1);
         list.add(2);
@@ -17,7 +18,7 @@ public class SinglyLinkedListTest {
         
         list.insert(2, 6);
         list.showList();
-        
+        System.out.println();
         list.delete(2);
         list.showList();
     }

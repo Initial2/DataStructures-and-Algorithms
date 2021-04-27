@@ -1,19 +1,18 @@
-package singlylinkedlist;
+package circylarlinkedlists;
+
 
 /**
- * 单向链表的实现
- * 此链表带头指针,头指针的next指向链表的第一个元素
- * head.next = 链表第一个元素.
+ * 单向循环链表
  *
  * @author initial
- * @create 2021-04-25 17:58
+ * @create 2021-04-26 17:55
  */
-public class SinglyLinkedList<T> {
-    
-    private final Node<T> head;
+public class CircularLinkedLists<T> {
+    private Node<T> head;
     private int numOfNodes;
     
-    public SinglyLinkedList() {
+    
+    public CircularLinkedLists() {
         head = new Node<>(null);
         numOfNodes = 0;
     }
@@ -35,13 +34,14 @@ public class SinglyLinkedList<T> {
             numOfNodes++;
             return;
         }
-    
+        
         Node<T> tNode = new Node<>(data);
         Node<T> temp = head;
-        while (temp.next != null) {
+        while (temp.next != null && temp.next != head) {
             temp = temp.next;
         }
         temp.next = tNode;
+        tNode.next = head;
         numOfNodes++;
     }
     
@@ -57,12 +57,26 @@ public class SinglyLinkedList<T> {
             throw new IndexOutOfBoundsException();
         }
         
+        //如果是在0位置插入,就要更改head.
+        if (index == 0) {
+            Node<T> tNode = new Node<>(data);
+            Node<T> temp = head;
+            while (temp.next != null && temp.next != head) {
+                temp = temp.next;
+            }
+            temp.next = tNode;
+            tNode.next = head;
+            head = tNode;
+            return;
+        }
+        
+        
         Node<T> temp = head;
         while (index > 1) {
             temp = temp.next;
             index--;
         }
-    
+        
         Node<T> newNodeNext = temp.next;
         Node<T> newNode = new Node<>(data);
         temp.next = newNode;
@@ -78,9 +92,10 @@ public class SinglyLinkedList<T> {
         if (head.next == null) {
             return;
         }
-    
-        Node<T> temp = head;
-        while (temp != null) {
+        System.out.println(head.data);
+        Node<T> temp = head.next;
+        
+        while (temp != null && temp != head) {
             System.out.println(temp.data);
             temp = temp.next;
         }
@@ -94,7 +109,7 @@ public class SinglyLinkedList<T> {
      * @param index 指定索引位置
      * @return 返回删除的元素
      */
-    public T delete(int index) {
+    public T remove(int index) {
         if (index < 0 && index > numOfNodes) {
             throw new IndexOutOfBoundsException();
         }
@@ -117,6 +132,7 @@ public class SinglyLinkedList<T> {
      */
     public void clear() {
         head.next = null;
+        head.data = null;
         numOfNodes = 0;
     }
     
@@ -142,7 +158,7 @@ public class SinglyLinkedList<T> {
     
     static class Node<T> {
         private T data;
-        private Node<T> next;
+        public Node<T> next;
         
         public Node(T data) {
             this.data = data;
@@ -157,6 +173,5 @@ public class SinglyLinkedList<T> {
             return data;
         }
     }
-    
     
 }
